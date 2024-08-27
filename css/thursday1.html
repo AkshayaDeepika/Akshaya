@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .child{
+            width:400px;
+            overflow: hidden;
+        }
+        .child>p img
+        {
+            width:50%;
+        }
+        .child:nth-child(odd) p>img
+        {
+            float: right;
+        }
+        .child:nth-child(even) p>img
+        {
+            float: left;
+        }
+        .parent>div>p:nth-child(Odd) img
+        {
+            width:400px;
+        }
+        body{
+            background-image: linear-gradient(rgb(170, 91, 91),rgb(81, 81, 159),rgb(56, 115, 56));
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+      <div class="child">
+        <p><img src="https://t3.ftcdn.net/jpg/07/16/46/44/360_F_716464441_DvxUkPchxMPozb2zAFof1DHEze2dxKHG.jpg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatum ullam at aspernatur laudantium, sapiente earum aliquam officia tempore exercitationem deleniti nihil architecto tempora. Explicabo!</p>
+      </div>
+    <div class="child">
+    <p><img src="https://t3.ftcdn.net/jpg/07/16/46/44/360_F_716464441_DvxUkPchxMPozb2zAFof1DHEze2dxKHG.jpg">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos temporibus quo dolorum unde odit illum fuga assumenda mollitia, id aliquam non, voluptates quasi fugiat corporis.</p>
+    </div>
+    <div class="child">
+    <p id="p2"><img src="https://t3.ftcdn.net/jpg/07/16/46/44/360_F_716464441_DvxUkPchxMPozb2zAFof1DHEze2dxKHG.jpg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, dolore nisi? Ipsum, iusto ratione similique dolore quos ut, nobis laboriosam praesentium porro sequi rem incidunt.</p>
+    </div>
+    <div class="child">
+    <p><img src="https://t3.ftcdn.net/jpg/07/16/46/44/360_F_716464441_DvxUkPchxMPozb2zAFof1DHEze2dxKHG.jpg">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo voluptatum ullam at aspernatur laudantium, sapiente earum aliquam officia tempore exercitationem deleniti nihil architecto tempora. Explicabo!</p>
+    </div>
+    </div>
+</body>
+</html>

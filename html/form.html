@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="https://www.google.com" method="get" enctype="multipart/form-data">
+     <fieldset>
+        <legend> Name Field</legend>
+        <label for="firstname">Firstname:</label>
+        <input type="text" name="firstname" id="firstname">
+        <br>
+        <br>      
+        <label for="firstname">Lastname:</label>
+        <input for="text" name="Lastname" id="Lastname">
+    </fieldset><br>
+        <label for="password">Password:</label>
+        <input type="password" name="Password" id="Password">
+        <br><br>
+    <label for="DOB">DOB:</label>
+    <input type="Date" name="Date of Birth" id="date of birth">
+    <br><br>
+    <label for="Mail">Mail</label>
+    <input type="email" name="Mail" id="Mail">
+    <br><br>
+    <fieldset>
+    <p>Radio button</p>
+    <input type="radio" name="gender" id="male">
+    <label for="male">male</label>
+    <input type="radio" name="gender" id="female">
+    <label for="female">female</label>
+    <br><br>
+    <p>Checkbox</p>
+    <input type="checkbox" name="hobbies" id="read book">
+    <label for="read book">Book reading</label>
+    <input type="checkbox" name="hobbies" id="singing">
+    <label for="singing">singing</label>
+    <br><br>
+    </fieldset>
+    <label for="courses">courses</label>
+    <select name="courses" id="courses">
+    <option value="">select courses</option>
+        <option value="CSE">cse course</option>
+        <option value="CSD">csd course</option>   
+        <option value="CSM">csm course</option>
+        <option value="ECE">ece course</option>
+        <option value="EEE">eee course</option>
+    </select>
+    <br>
+    <br>
+    <label for="bio">Bio</label>
+    <textarea id="bio" name="bio" rows="4" cols="50" placeholder="tell about yourself">
+    </textarea>
+    <br><br>
+    <label for="resume">Upload Resume</label>
+    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx">
+    <br><br>
+    <label for="resume">Upload Profile</label>
+    <input type="file" id="profile" name="profile" accept=".jpg,.png,.jpeg">
+    <br><br>
+    <label for="Mobileno">Mobile number</label>
+    <input type="numbers" id="Mobileno" name="Mobileno">
+    <br><br>
+     <input type="submit" value="sign in">
+ </form>
+</body>
+</html>

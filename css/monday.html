@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin:0;
+    }
+    .parent{
+        height:100vh;
+        background-image: linear-gradient(blue,rgb(129, 129, 49));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .child{
+          background-color: whitesmoke;
+          width: 40%;
+          height:25%;
+          padding: 20px;
+          border-radius: 10px;
+          box-shadow: 0 0 5px black;
+    }
+    .child.field{
+        display:flex;
+        flex-direction: column;
+    }
+    .field{
+        margin-bottom: 10px;
+    }
+    input{
+        margin-top :10px; 
+    }
+    input[type="submit"]
+    {
+        background-color: blueviolet;
+        opacity: 0.5;
+    }
+    input[type="submit"]:hover
+    {
+        
+        background-color: blueviolet;
+        opacity: 1;
+    }
+    .c1-pass
+    {
+        color:green;
+    }
+    .c1-fail
+    {
+        color:red;
+    }
+    .c2-pass
+    {
+        color:green;
+    }
+    .c2-fail
+    {
+        color:red;
+    }
+    .c3-pass
+    {
+        color:green;
+    }
+    .c3-fail
+    {
+        color:red;
+    }
+</style>
+<body>
+    <div class="parent">
+        <div class="child">
+            <form>
+                <div class="field">
+                    <label for="uname">Enter Username</label>
+                    <input type="text" id="uname" placeholder="Enter Your Name"> <br>
+                    <label id="c1">Username should be lessthan 8 chars</label><br>
+                    <label id="c3">should not contain Spaces</label><br>
+                    <label id="c2">Should not start with a number</label>
+                </div>
+                <div class="field">
+                    <label for="pwd">Enter Password</label>
+                    <input type="password" name="pwd" id="pwd" placeholder="Enter Password"> 
+                </div>
+                <div>
+                    <input type="checkbox" id="check" name="pwd">
+                    <label for="pwd">Show Password</label>
+
+                </div>
+                <div class="field">
+                    <input type="submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let pwd=document.getElementById("pwd");
+        let check=document.getElementById("check");
+        check.addEventListener('change',function()
+        {
+            var attr=pwd.getAttribute("type");
+            if(attr==="password")
+              pwd.setAttribute("type","text");
+             else
+              pwd.setAttribute("type","password");
+        })
+        var uname=document.getElementById("uname");
+        uname.addEventListener('input',function()
+        {
+            if(uname.value.length>10)
+            {
+                document.getElementById("c1").classList.add('c1-fail');
+                document.getElementById("c1").classList.remove('c1-pass');
+            }
+            else{
+                document.getElementById("c1").classList.add('c1-pass');
+                document.getElementById("c1").classList.remove('c1-fail');
+            }
+            let username=uname.value;
+            if(username.codePointAt(0)>=48 && username.codePointAt(0)<=57)
+            {
+                document.getElementById("c2").classList.add('c1-fail');
+                document.getElementById("c2").classList.remove('c1-pass');
+            }
+            else{
+                document.getElementById("c2").classList.remove('c1-fail');
+                document.getElementById("c2").classList.add('c1-pass');
+            }
+            var trimValue=username.trim()
+            if(trimValue!==username)
+            {
+                document.getElementById("c3").classList.add('c1-fail')
+                document.getElementById("c3").classList.remove('c1-pass');
+            }
+            else{
+                document.getElementById("c3").classList.remove('c1-fail');
+                document.getElementById("c3").classList.add('c1-pass');
+            }
+        });
+        var form=document.getElementById("form");
+        form.addEventListener('submit',function(event)
+        {
+            if(!validateName())
+            {
+                alert('form is not suubmitted')
+            }
+        })
+    </script>
+</body>
+</html>

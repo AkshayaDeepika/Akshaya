@@ -1,0 +1,409 @@
+
+form-validate.html
+``````````````````
+---> form validation using regex
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        div {
+            width: 100%;
+            height: 100vh;
+            border: 2px solid green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: linear-gradient(blue, whitesmoke);
+        }
+
+        form {
+            height: 40vh;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid black;
+            border-radius: 20px;
+            box-shadow: 0 0 2px black;
+            width: 40%;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: whitesmoke
+        }
+
+        form * {
+            width: 50%;
+        }
+
+        .text-success {
+
+            border: 1px solid limegreen;
+            box-shadow: 0 0 5px limegreen;
+        }
+
+        .text-failure {
+            font-size: small;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: 1px solid rgb(245, 4, 28);
+            box-shadow: 0 0 5px rgb(237, 12, 12);
+        }
+        input[type="submit"]
+        {
+            background-color: blueviolet;
+            opacity: 0.5;
+        }
+        input[type="submit"]:hover
+        {
+           
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form class="register-form">
+            <label for="uname">Enter name</label>
+            <input type="text" id="uname">
+            <label id="name-feedback"></label>
+
+            <label for="email">Enter Email</label>
+            <input type="email" id="email">
+            <label id="email-feedback"></label>
+
+            <label for="pwd">Enter Password</label>
+            <input type="password" id="pwd">
+            <label id="pwd-feedback"></label>
+            <input type="submit">
+        </form>
+    </div>
+    <script>
+        let form = document.querySelector(".register-form");
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+             if(  validateName() && validateEmail())
+             {
+                alert("Form is submitted successfully");
+             }
+        });
+       let validateName=()=>
+       {
+        let uname = document.getElementById("uname");
+            let reg = /[A-Za-z0-9]{5,10}/;
+            let feedback = document.getElementById("name-feedback");
+            if (reg.test(uname.value)) {
+                feedback.innerText = "Good job";
+                uname.classList.add('text-success');
+                uname.classList.remove('text-failure');
+                return true;
+            }
+            else {
+                feedback.innerText = "try again";
+                uname.classList.remove('text-success');
+                uname.classList.add('text-failure');
+            }
+            return false;
+       }
+       let uname = document.getElementById("uname");
+       uname.addEventListener('keyup',function()
+       {
+            let reg = /[A-Za-z0-9]{5,10}/;
+            let feedback = document.getElementById("name-feedback");
+            if (reg.test(uname.value)) {
+                feedback.innerText = "Good job";
+                feedback.style.textAlign="center";
+                uname.classList.add('text-success');
+                uname.classList.remove('text-failure');
+            }
+            else {
+                feedback.innerText = "try again";
+                uname.classList.remove('text-success');
+                uname.classList.add('text-failure');
+            }
+       });
+       let validateEmail=()=>
+       {
+            let email = document.getElementById("email");
+            const reg =  /[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/;
+            let feedback = document.getElementById("email-feedback");
+            if (reg.test(email.value)) {
+
+                feedback.innerText = "Well Formated";
+                email.classList.add('text-success');
+                email.classList.remove('text-failure');
+                return true;
+            }
+            else {
+                feedback.innerText = "try again";
+                email.classList.remove('text-success');
+                email.classList.add('text-failure');
+            }
+            return false;
+       }
+    let email=document.getElementById("email");
+    email.addEventListener('keyup',function()
+       {
+            let email = document.getElementById("email");
+            const reg =  /[A-Za-z0-9\._%+\-]+@[A-Za-z0-9\.\-]+\.[A-Za-z]{2,}/;
+            let feedback = document.getElementById("email-feedback");
+            if (reg.test(email.value)) {
+
+                feedback.innerText = "Well Formated";
+                email.classList.add('text-success');
+                email.classList.remove('text-failure');
+                return true;
+            }
+            else {
+                feedback.innerText = "try again";
+                email.classList.remove('text-success');
+                email.classList.add('text-failure');
+            }
+            return false;
+       });
+    </script>
+</body>
+
+</html>
+
+
+Basicform.html
+```````````````
+--> Form validations without using regex
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .c1-pass
+        {
+            color: lightgreen;
+        }
+        .c1-fail
+        {
+            color:red;
+        }
+    </style>
+</head>
+<body>
+    <form id="form">
+        <label>Enter Name:</label>
+        <input type="text" id="uname" required><br>
+        <ul>
+        <li><label id="c1">Username should be lessthan 8 chars</label></li>
+        <li><label id="c2">Should not contain Spaces</label></li>
+        <li><label id="c3">Should not start with a number</label></li>
+        </ul>
+        <label>Enter Password:</label>
+        <input type="password"><br>
+        <input type="submit">
+    </form>
+    <script>
+    document.getElementById("uname").addEventListener('input',function()
+    {
+        var username=document.getElementById("uname").value;
+        if(username.length>8)
+        {
+            document.getElementById("c1").classList.add("c1-fail");
+        }
+        else{
+            document.getElementById("c1").classList.add("c1-pass");
+        }
+        if(username.codePointAt(0)>=48 && username.codePointAt(0)<=57)
+        {
+            document.getElementById("c3").classList.add("c1-fail");
+        }
+        else{
+            document.getElementById("c3").classList.add("c1-pass");
+        }
+
+        if(username.trim()!==username)
+        {
+            document.getElementById("c2").classList.add("c1-fail");
+        }
+        else{
+            document.getElementById("c2").classList.add("c1-pass");
+        }
+
+        
+
+    });
+    document.getElementById("form").addEventListener('submit',function()
+    {
+        
+    });
+
+    </script>
+</body>
+</html>
+
+Calculator.html
+```````````````
+Add CSS Accordingly
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="res"></h1>
+    <button class="btn" value="0">0</button>
+    <button class="btn" value="1">1</button>
+    <button class="btn" value="2">2</button>
+    <button class="btn" value="3">3</button>
+    <button class="btn" value="4">4</button>
+    <button class="btn" value="5">5</button>
+    <button class="btn" value="6">6</button>
+    <button class="btn" value="7">7</button>
+    <button class="btn" value="8">8</button>
+    <button class="btn" value="9">9</button>
+    <button class="btn" value="+">+</button>
+    <button class="btn" value="-">-</button>
+    <button class="btn" value="*">*</button>
+    <button class="btn" value="/">/</button>
+    <button class="btn" value="%">%</button>
+    <button class="btn" value="=">=</button>
+    <button class="btn" value="clear">clear</button>
+    <script>
+        var myvar=document.querySelectorAll(".btn");
+        for(let i=0;i<myvar.length;i++)
+        {
+            var exp="";
+        myvar[i].addEventListener('click',function()
+        {
+          if(myvar[i].value === "=")
+          {
+            exp=eval(exp);
+          }
+          else if(myvar[i].value==="clear")
+          {
+            exp="0";
+          }
+          else
+             exp=exp+myvar[i].value;
+          document.getElementById("res").innerHTML=exp;
+        });
+        }
+        
+    </script>
+</body>
+</html>
+
+
+Making Password-visible using js:
+`````````````````````````````````
+<html>
+
+<head>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .parent {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(blue, violet);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .child {
+            padding: 30px;
+            border: 1px solid black;
+            border-radius: 20px;
+            width: 350px;
+            background-color: whitesmoke;
+            box-shadow: 0 0 5px rgb(9, 9, 9);
+        }
+
+        .field * {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .field input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.492);
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            background-color: blueviolet;
+            border: none;
+            padding: 10px;
+            color: lightgoldenrodyellow;
+            border-radius: 5px;
+            opacity: 0.6;
+        }
+
+        input[type="submit"]:hover {
+            opacity: 1;
+        }
+        .c1-pass
+        {
+            color:green;
+        }
+        .c1-fail
+        {
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <div class="child">
+            <form id="form" method="post">
+            <div class="field">
+                <label>Enter Username:</label>
+                <input type="text" name="uname" id="uname" placeholder="enter name">
+                <label id="c1">The max chars are 10</label>
+                <label id="c2">First Char should not be a digit</label>
+                <label id="c3">First Char should not start with space</label>
+            </div>
+            <div class="field">
+                <label>Enter password:</label>
+                <input type="password" name="pwd" id="pwd" placeholder="enter password">
+            </div>
+            <div>
+                <input type="checkbox" id="check">
+                <label>Show password</label>
+            </div>
+            <div class="field">
+                <input type="submit">
+            </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        let pwd=document.getElementById("pwd");
+        let check=document.getElementById("check");
+        check.addEventListener('change',function()
+        {
+            var attr=pwd.getAttribute("type");
+            if(attr==="password")
+               pwd.setAttribute("type","text");
+             else
+              pwd.setAttribute("type","password");
+        })
+    </script>
+</body>
+</html
+
+
+
+
+
+js-usecases.txt
+Displaying js-usecases.txt.
